@@ -18,11 +18,13 @@ It is a static site built with [Jekyll](https://jekyllrb.com/) and hosted on
 
 ```
 .
-├── _config.yml        # Site-wide settings (title, author, URL, build excludes)
+├── _config.yml        # Site-wide settings (title, author, URL, SASS, build excludes)
 ├── _layouts/          # Page templates (default.html wraps every page)
 ├── _includes/         # Reusable snippets (header, banner, footer)
+├── _sass/             # SCSS partials (libs/) — compiled to CSS by Jekyll
 ├── *.html             # Pages — each has YAML front matter + content
-├── assets/            # Vendored HTML5UP template: CSS, JS, fonts (do not hand-edit)
+├── assets/            # Adapted HTML5UP template: SCSS entry, JS, fonts
+│   └── css/main.scss  # SCSS entry point → Jekyll compiles it to main.css
 ├── images/            # Images used across the site
 ├── CNAME              # Custom domain for GitHub Pages
 └── _site/             # Build output (generated, git-ignored)
@@ -101,6 +103,21 @@ to run — just push.
 
 ## HTML Template
 
-This website uses the great [Alpha](https://html5up.net/alpha) template by
-[HTML5 UP](https://html5up.net/) provided under the
-[Creative Commons License](https://html5up.net/license).
+This website is **adapted** from the great [Alpha](https://html5up.net/alpha) template by
+[HTML5 UP](https://html5up.net/), provided under the
+[Creative Commons Attribution 3.0 License](https://html5up.net/license) (which permits
+modification with attribution).
+
+Modifications from the original template include:
+
+- **Jekyll conversion** — layouts, includes, and per-page front matter (the original ships as
+  plain static HTML).
+- **SASS compiled by Jekyll** — the SCSS entry point
+  [`assets/css/main.scss`](assets/css/main.scss), together with the partials in
+  [`_sass/libs/`](_sass/libs/), is the single source of truth; Jekyll generates
+  `assets/css/main.css` at build time (it is no longer hand-committed). Site-specific overrides
+  live in [`_sass/libs/_custom.scss`](_sass/libs/_custom.scss), imported last.
+- **Custom D3 graph background** ([`assets/js/network.js`](assets/js/network.js)) and a recolored
+  accent palette.
+
+The HTML5 UP attribution is retained in the site footer ([`_includes/footer.html`](_includes/footer.html)).

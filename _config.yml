@@ -8,6 +8,11 @@ description: >-
   temporal graphs, and applications in single-cell biology.
 
 # Build settings
+sass:
+  sass_dir: _sass
+  style: expanded # readable output; matches the previously committed main.css
+  sourcemap: never # keep output clean (the old main.css had no sourcemap)
+
 exclude:
   - README.md
   - .devcontainer

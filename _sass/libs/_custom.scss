@@ -1,0 +1,90 @@
+// Customizations by Moritz Lampert, layered on top of the stock HTML5 UP "Alpha"
+// styles. This partial is @imported LAST in main.scss so these rules win the
+// cascade over the template defaults. Adapted from HTML5 UP "Alpha" (CC BY 3.0).
+//
+// These rules were previously hand-edited directly into the compiled main.css
+// (which is no longer committed — Jekyll now generates it from this SCSS).
+
+/* D3 network background ----------------------------------------------------- */
+
+	#network {
+		position: relative; // contain the absolutely-positioned SVG
+	}
+
+		#network svg {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			z-index: -1; // behind page content
+		}
+
+		#network > * {
+			position: relative;
+			z-index: 2; // above the SVG
+		}
+
+/* Fixed-size image helpers (used on the home page) ------------------------- */
+
+	.small-image {
+		width: 150px;
+		height: auto;
+	}
+
+	.small-image-height {
+		width: auto;
+		height: 100px;
+	}
+
+/* Center a single feature when the affiliations row has an odd count -------- */
+// `width` is intentionally omitted so the stock rule keeps it at 50% on desktop
+// and the responsive rule widens it to 100% on narrow screens; `margin` is left
+// non-!important so the responsive breakpoint margins still take over on mobile.
+
+	.box.features .single-feature section {
+		float: none;
+		margin: 0 auto;
+		padding: 3em 0;
+	}
+
+/* Brand icons use FontAwesome's `fa-brands` class (not Alpha's `brands`) ---- */
+
+	.icon.fa-brands:before {
+		font-family: "Font Awesome 5 Brands";
+	}
+
+/* Banner: blurred background image + translucent content box --------------- */
+// Replaces Alpha's overlay.png / banner.jpg background.
+
+	#banner {
+		background: none;
+		overflow: hidden;
+		position: relative;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-image: url("../../images/background.jpg");
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			z-index: 0;
+		}
+
+		&.blurred::before {
+			filter: blur(3px);
+		}
+
+		.banner-content {
+			background-color: rgba(102, 102, 102, 0.7);
+			display: inline-block;
+			padding: 1em 2em;
+			border-radius: 8px;
+			position: relative;
+			z-index: 1;
+		}
+	}

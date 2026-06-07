@@ -1,3 +1,8 @@
+---
+# Front matter (intentionally empty) tells Jekyll to compile this SCSS to
+# assets/css/main.css via jekyll-sass-converter. Partials live in _sass/.
+---
+// Adapted from HTML5 UP "Alpha" (CC BY 3.0). Modified by Moritz Lampert.
 @import 'libs/vars';
 @import 'libs/functions';
 @import 'libs/mixins';
@@ -2090,3 +2095,6 @@
 			}
 
 	}
+
+// Moritz Lampert's customizations — imported last so they override the template.
+@import 'libs/custom';
