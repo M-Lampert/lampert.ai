@@ -44,7 +44,10 @@
 		position: relative; // contain the absolutely-positioned SVG
 	}
 
-		#network svg {
+		// Direct child only — the D3 background SVG is appended straight to
+		// #network. (`#network svg` would also match inline icon SVGs in the page
+		// content and hide them behind everything.)
+		#network > svg {
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -96,6 +99,19 @@
 	ul.icons li .icon svg {
 		width: 1.75em;
 		height: 1.75em;
+	}
+
+	// Mobile menu (hamburger) button: Alpha drew its three lines with a
+	// FontAwesome glyph, which is gone now. Reproduce the old "bars" look with an
+	// inline SVG (three rounded white lines) on the same grey rounded box.
+	#navButton .toggle:before {
+		content: "";
+		width: 3em;
+		height: 2em;
+		background:
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 18'%3E%3Cg fill='%23fff'%3E%3Crect width='24' height='3' rx='1.5'/%3E%3Crect y='7.5' width='24' height='3' rx='1.5'/%3E%3Crect y='15' width='24' height='3' rx='1.5'/%3E%3C/g%3E%3C/svg%3E")
+				no-repeat center / 1.2em auto,
+			rgba(192, 192, 192, 0.75);
 	}
 
 /* Banner: blurred background image + translucent content box --------------- */

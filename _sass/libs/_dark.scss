@@ -1,0 +1,162 @@
+// Dark mode — override layer toggled by `data-theme="dark"` on <html>.
+//
+// The stock Alpha rules above define the light theme; these rules win because
+// this partial is @imported last. A small inline script in <head> sets the
+// attribute before first paint (respecting localStorage / prefers-color-scheme),
+// and assets/js/theme-toggle.js flips it on click. Adapted from HTML5 UP
+// "Alpha" (CC BY 3.0).
+
+	html {
+		color-scheme: light;
+	}
+
+	// Smooth the light<->dark switch (no effect on first paint, only on toggle).
+	body,
+	.box,
+	#header,
+	#footer {
+		transition:
+			background-color 0.2s ease,
+			color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+/* Floating toggle button --------------------------------------------------- */
+
+	.theme-toggle {
+		position: fixed;
+		right: 1em;
+		bottom: 1em;
+		z-index: 1000;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.75em;
+		height: 2.75em;
+		padding: 0;
+		border: 0;
+		border-radius: 50%;
+		cursor: pointer;
+		background: #ffffff;
+		color: #555555;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+		transition:
+			background-color 0.2s ease,
+			color 0.2s ease;
+
+		svg {
+			width: 1.35em;
+			height: 1.35em;
+			fill: currentColor;
+		}
+
+		// Light mode shows the moon ("switch to dark"); dark mode shows the sun.
+		.icon-sun {
+			display: none;
+		}
+	}
+
+/* Dark theme overrides ----------------------------------------------------- */
+
+	[data-theme="dark"] {
+		color-scheme: dark;
+
+		// Base surfaces + text.
+		body {
+			background: #15171c;
+		}
+		body,
+		input,
+		select,
+		textarea {
+			color: #b9bcc2;
+		}
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		strong,
+		b {
+			color: #f0f1f3;
+		}
+
+		// Cards.
+		.box {
+			background: #1e2128;
+			box-shadow: 0 2px 0 0 #2c3038;
+		}
+		// Dividers/borders that use the light #e5e5e5 in the stock theme.
+		.box.features .features-row {
+			border-top-color: #2c3038;
+		}
+		.box.features .features-row section:nth-child(2n):before {
+			background: #2c3038; // vertical divider between two columns
+		}
+		.box.features .features-row section {
+			border-top-color: #2c3038 !important; // mobile stacked-section divider
+		}
+		ul.alt > li {
+			border-top-color: #2c3038; // publication/talk/award list dividers
+		}
+
+		// Header subtitle paragraphs (e.g. the About Me bio) carry a light divider
+		// line and a hard-coded #777 colour.
+		header.major p,
+		#main > header p {
+			border-top-color: #2c3038;
+			color: #b9bcc2;
+		}
+
+		// Nav dropdown menu (dropotron) — light card by default.
+		.dropotron {
+			background: #1e2128;
+			color: #b9bcc2;
+			box-shadow:
+				0 2px 0 0 rgba(0, 0, 0, 0.3),
+				inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+		}
+		.dropotron li a,
+		.dropotron li span {
+			border-top-color: #2c3038;
+		}
+		.dropotron.level-0:before {
+			background: #1e2128;
+			border-color: rgba(255, 255, 255, 0.08);
+		}
+
+		// Mobile hamburger box — darken to match (the white bars stay visible).
+		#navButton .toggle:before {
+			background-color: rgba(30, 33, 40, 0.85);
+		}
+
+		// Footer bar (the header is already dark #444 in both themes, and its
+		// transparent `.alt` state over the banner must be preserved, so it is
+		// intentionally not overridden here).
+		#footer {
+			background: #1a1c21;
+		}
+
+		// Decorative D3 background graph — keep it subtle on dark.
+		#network > svg line {
+			stroke: #2b2f37;
+		}
+		#network > svg circle {
+			fill: #3b4b5e;
+		}
+
+		// Toggle button.
+		.theme-toggle {
+			background: #1e2128;
+			color: #f0f1f3;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+
+			.icon-moon {
+				display: none;
+			}
+			.icon-sun {
+				display: inline-block;
+			}
+		}
+	}

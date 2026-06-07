@@ -820,7 +820,9 @@
 			list-style: none;
 			padding-left: 0;
 
-			li {
+			// Child combinator so the dividers apply only to direct list items,
+			// not to <li>s of nested lists (e.g. an inner ul.icons).
+			> li {
 				border-top: solid 1px _palette(border);
 				padding: 0.5em 0;
 
@@ -2092,3 +2094,5 @@
 
 // Moritz Lampert's customizations — imported last so they override the template.
 @import 'libs/custom';
+// Dark-mode override layer — imported after _custom so it wins the cascade.
+@import 'libs/dark';

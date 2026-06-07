@@ -9,6 +9,14 @@
 <head>
     <title>{{ page.title }}</title>
     <meta charset="utf-8" />
+    <!-- Apply the saved/OS colour scheme before first paint to avoid a flash -->
+    <script>
+        (function () {
+            var t = localStorage.getItem("theme");
+            if (!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) t = "dark";
+            if (t === "dark") document.documentElement.setAttribute("data-theme", "dark");
+        })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="{{ page.description }}" />
     <meta name="author" content="{{ site.author }}" />
@@ -27,6 +35,9 @@
 
         <!-- Header -->
         {% include header.html %}
+
+        <!-- Dark-mode toggle (fixed, works on all viewports) -->
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">{% include icons/moon.svg %}{% include icons/sun.svg %}</button>
 
         <!-- Banner -->
         {% include banner.html %}
@@ -54,6 +65,8 @@
 
     <script defer src="assets/js/d3.v7.min.js"></script>
     <script defer src="assets/js/network.js"></script>
+
+    <script defer src="assets/js/theme-toggle.js"></script>
 
 </body>
 
