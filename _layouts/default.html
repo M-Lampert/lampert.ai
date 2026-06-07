@@ -27,7 +27,38 @@
     <meta property="og:description" content="{{ page.og_description | default: page.description }}" />
     <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
     <meta property="og:image" content="{{ site.url }}/images/{{ page.og_image | default: 'moritz.png' }}" />
+    <!-- Twitter / X cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ page.title }}" />
+    <meta name="twitter:description" content="{{ page.og_description | default: page.description }}" />
+    <meta name="twitter:image" content="{{ site.url }}/images/{{ page.og_image | default: 'moritz.png' }}" />
+    <!-- Icons / theme colour -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#f5f5f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#15171c" media="(prefers-color-scheme: dark)" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    {% if page.url == "/" %}
+    <!-- Structured data: the site owner -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Moritz Lampert",
+            "url": "{{ site.url }}",
+            "image": "{{ site.url }}/images/moritz.png",
+            "jobTitle": "PhD Student",
+            "affiliation": { "@type": "CollegeOrUniversity", "name": "University of Würzburg" },
+            "sameAs": [
+                "https://www.linkedin.com/in/moritz-lampert-824423210/",
+                "https://scholar.google.com/citations?user=rNn9WJ4AAAAJ",
+                "https://orcid.org/0009-0007-6692-5646",
+                "https://github.com/M-Lampert"
+            ]
+        }
+    </script>
+    {% endif %}
 </head>
 
 <body class="landing is-preload">

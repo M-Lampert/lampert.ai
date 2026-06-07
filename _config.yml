@@ -7,6 +7,10 @@ description: >-
   the University of Würzburg, researching graph representation learning,
   temporal graphs, and applications in single-cell biology.
 
+# Plugins (bundled with the github-pages gem)
+plugins:
+  - jekyll-sitemap # generates /sitemap.xml
+
 # Build settings
 sass:
   sass_dir: _sass
