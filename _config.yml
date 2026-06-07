@@ -10,11 +10,13 @@ description: >-
 # Build settings
 sass:
   sass_dir: _sass
-  style: expanded # readable output; matches the previously committed main.css
-  sourcemap: never # keep output clean (the old main.css had no sourcemap)
+  style: compressed # minified CSS for production
+  sourcemap: never # keep output clean
 
 exclude:
   - README.md
   - .devcontainer
   - Gemfile
   - Gemfile.lock
+  - inspiration # reference repos — not part of the published site
+  - scripts # build helpers (e.g. image optimizer)

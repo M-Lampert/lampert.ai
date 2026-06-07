@@ -124,3 +124,25 @@ The template's color palette and main stylesheet are otherwise unchanged from st
 visual customizations live in [`_sass/libs/_custom.scss`](_sass/libs/_custom.scss).
 
 The HTML5 UP attribution is retained in the site footer ([`_includes/footer.html`](_includes/footer.html)).
+
+## Icons
+
+Icons are **inline SVGs** (FontAwesome was removed to save ~350 KB). Each icon is a small file in
+[`_includes/icons/`](_includes/icons/) whose first line is an HTML comment recording its **source and
+license**. They are pulled into a page with a Liquid include and inherit the surrounding text colour
+via `fill: currentColor` (sized by the `.icon svg` rule in
+[`_sass/libs/_custom.scss`](_sass/libs/_custom.scss)).
+
+### Adding an icon
+
+1. **Find an SVG.** Brand/logo marks: [Simple Icons](https://simpleicons.org) (CC0). UI glyphs:
+   [Heroicons](https://heroicons.com) (MIT) or [Font Awesome Free](https://fontawesome.com/search?o=r&m=free)
+   (icons under CC BY 4.0 — keep the attribution comment the SVG ships with).
+2. **Save it** as `_includes/icons/<name>.svg`. Strip any `<title>`/`role="img"`, and on the `<svg>`
+   tag set `fill="currentColor" aria-hidden="true" focusable="false"` (keep the `viewBox`). Add a
+   first-line comment: `<!-- <Name> — <source>, <license> -->`.
+3. **Use it** inside a link or a `<span class="icon">`, giving the link an `aria-label`:
+   ```liquid
+   <a href="https://example.com/me" class="icon" aria-label="Example">{% include icons/example.svg %}</a>
+   ```
+   Inside a `ul.icons` list the icon renders at `1.75em`; elsewhere it is `1em`.
