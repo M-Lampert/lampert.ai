@@ -117,7 +117,10 @@ Modifications from the original template include:
   [`_sass/libs/`](_sass/libs/), is the single source of truth; Jekyll generates
   `assets/css/main.css` at build time (it is no longer hand-committed). Site-specific overrides
   live in [`_sass/libs/_custom.scss`](_sass/libs/_custom.scss), imported last.
-- **Custom D3 graph background** ([`assets/js/network.js`](assets/js/network.js)) and a recolored
-  accent palette.
+- **Custom D3 graph background** ([`assets/js/network.js`](assets/js/network.js)) drawn behind the
+  page content.
+
+The template's color palette and main stylesheet are otherwise unchanged from stock Alpha — the only
+visual customizations live in [`_sass/libs/_custom.scss`](_sass/libs/_custom.scss).
 
 The HTML5 UP attribution is retained in the site footer ([`_includes/footer.html`](_includes/footer.html)).

@@ -21,11 +21,14 @@ if (delaunay.halfedges.length > 0) {
   }
 }
 
-// Create a new SVG element
+// Create a new SVG element. It is purely decorative, so hide it from assistive
+// technology and the accessibility tree.
 const svg = d3.create("svg")
   .attr("width", width)
   .attr("height", height)
-  .attr("viewBox", [0, 0, width, height]);
+  .attr("viewBox", [0, 0, width, height])
+  .attr("aria-hidden", "true")
+  .attr("role", "presentation");
 
 // Create the simulation with the standard forces.
 const simulation = d3.forceSimulation(nodes)
