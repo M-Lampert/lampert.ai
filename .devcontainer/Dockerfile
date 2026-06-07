@@ -1,16 +1,33 @@
-FROM mcr.microsoft.com/devcontainers/miniconda:1-3
+FROM python:3.13-slim-bookworm
 
-# Copy environment.yml (if found) to a temp location so we update the environment. Also
-# copy "noop.txt" so the COPY instruction does not fail if no environment.yml exists.
-COPY environment.yml* .devcontainer/noop.txt /tmp/conda-tmp/
-RUN if [ -f "/tmp/conda-tmp/environment.yml" ]; then umask 0002 && /opt/conda/bin/conda env update -n base -f /tmp/conda-tmp/environment.yml; fi \
-    && rm -rf /tmp/conda-tmp
+# System packages for git operations, pre-commit, and Ruby native gem compilation.
+# build-essential + libffi-dev + zlib1g-dev: needed to compile native gems (e.g. prism)
+# pulled in via github-pages → activesupport → minitest → prism.
+# git: clone/commit; gnupg2: signed commits; openssh-client: git over SSH;
+# locales: avoid pre-commit/locale warnings
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        libffi-dev \
+        zlib1g-dev \
+        git \
+        gnupg2 \
+        openssh-client \
+        locales && \
+    rm -rf /var/lib/apt/lists/*
 
-# [Optional] Uncomment to install a different version of Python than the default
-# RUN conda install -y python=3.6 \
-#     && pip install --no-cache-dir pipx \
-#     && pipx reinstall-all
+# uv: copy the prebuilt binaries from the official image (faster than pip install)
+COPY --from=ghcr.io/astral-sh/uv:0.11.19 /uv /uvx /bin/
 
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
+# gitleaks: static binary for the pre-commit secret-scanning hook
+COPY --from=ghcr.io/gitleaks/gitleaks:v8.30.1 /usr/bin/gitleaks /usr/local/bin/gitleaks
+
+# pre-commit: install into the system Python so the git hook finds it on PATH
+RUN uv pip install --system pre-commit
+
+# Set locale to avoid pre-commit hook errors
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
+    locale-gen
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8

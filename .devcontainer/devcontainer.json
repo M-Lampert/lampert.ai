@@ -1,24 +1,32 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/miniconda
+// For format details, see https://aka.ms/devcontainer.json.
 {
-	"name": "Miniconda (Python 3)",
-	"build": { 
-		"context": "..",
-		"dockerfile": "Dockerfile"
-	}
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "python --version",
-
-	// Configure tool-specific properties.
-	// "customizations": {},
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+  "name": "Website",
+  "workspaceFolder": "/workspaces/lampert.ai",
+  "build": {
+    "context": "..",
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "charliermarsh.ruff"],
+      "settings": {
+        // Resolves once you add a pyproject.toml and run `uv sync`.
+        "python.analysis.languageServerMode": "light",
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff"
+        }
+      }
+    }
+  },
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/devcontainers/features/ruby:1": {
+      "version": "3.3"
+    }
+  },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // Jekyll's default serve port.
+  "forwardPorts": [4000],
+  // Install Jekyll gems and wire up the pre-commit hook on first create.
+  "postCreateCommand": "bundle install && pre-commit install && git config --add safe.directory ${containerWorkspaceFolder}"
 }

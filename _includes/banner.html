@@ -1,0 +1,12 @@
+<section id="banner"{% if page.banner_blurred != false %} class="blurred"{% endif %}>
+    <div class="banner-content"{% if page.banner_image %} style="background-color: rgba(0, 0, 0, 0);"{% endif %}>
+        {% if page.banner_image %}
+        <img src="images/{{ page.banner_image }}" alt="{{ page.banner_title }}" style="width: 40%; height: auto;">
+        {% else %}
+        <h2 style="font-weight: bold;">{{ page.banner_title }}</h2>
+        {% if page.banner_subtitle %}
+        <p>{{ page.banner_subtitle }}</p>
+        {% endif %}
+        {% endif %}
+    </div>
+</section>

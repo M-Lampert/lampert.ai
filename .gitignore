@@ -1,0 +1,26 @@
+# --- Jekyll ---
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# --- Ruby / Bundler ---
+# Gemfile.lock is kept on purpose so local builds match GitHub Pages.
+.bundle/
+vendor/bundle/
+*.gem
+
+# --- Python / uv ---
+.venv/
+__pycache__/
+*.pyc
+.ruff_cache/
+
+# --- Dev container / editor tooling ---
+# devcontainer-lock.json is kept on purpose to pin reproducible feature versions.
+.ruby-lsp/
+
+# --- OS / misc ---
+.DS_Store
+Thumbs.db
+*~

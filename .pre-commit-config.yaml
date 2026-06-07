@@ -1,0 +1,34 @@
+# Run `pre-commit autoupdate` to bump the pinned revisions.
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: ^assets/
+      - id: end-of-file-fixer
+        exclude: ^assets/
+      - id: mixed-line-ending
+        exclude: ^assets/
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: check-yaml # validates _config.yml
+      - id: check-added-large-files
+        args: ["--maxkb=2048"] # tune for your images/
+
+  # Format non-template, non-vendored text files.
+  # HTML is excluded (Prettier mangles Liquid); assets/ is vendored (html5up + libs).
+  - repo: https://github.com/rbubley/mirrors-prettier
+    rev: v3.8.3
+    hooks:
+      - id: prettier
+        files: \.(css|js|md|json|ya?ml)$
+        exclude: ^assets/
+
+  # Secret scanning using the gitleaks binary baked into the dev image.
+  - repo: local
+    hooks:
+      - id: gitleaks
+        name: gitleaks
+        entry: gitleaks git --pre-commit --redact --staged --verbose
+        language: system
+        pass_filenames: false

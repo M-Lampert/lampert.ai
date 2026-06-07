@@ -1,0 +1,15 @@
+# Site settings — shared across all pages
+title: Moritz Lampert
+author: Moritz Lampert
+url: https://lampert.ai
+description: >-
+  Moritz Lampert is a PhD student in Machine Learning for Complex Networks at
+  the University of Würzburg, researching graph representation learning,
+  temporal graphs, and applications in single-cell biology.
+
+# Build settings
+exclude:
+  - README.md
+  - .devcontainer
+  - Gemfile
+  - Gemfile.lock
