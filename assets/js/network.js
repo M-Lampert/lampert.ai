@@ -1,14 +1,14 @@
 const width = window.innerWidth;
 const height = document.documentElement.scrollHeight;
 
-// Generate 100 random points
-let nodes = d3.range(50).map(() => {
+// Generate 50 random nodes
+const nodes = d3.range(50).map(() => {
   return { x: Math.random() * width, y: Math.random() * height };
 });
 
 // Compute Delaunay triangulation
 const delaunay = d3.Delaunay.from(nodes.map(d => [d.x, d.y]));
-let links = [];
+const links = [];
 
 if (delaunay.halfedges.length > 0) {
   for (let i = 0; i < delaunay.halfedges.length; i++) {
@@ -34,11 +34,9 @@ const svg = d3.create("svg")
 const simulation = d3.forceSimulation(nodes)
   .force("link", d3.forceLink(links).distance(400))
   .force("charge", d3.forceManyBody().strength(-350));
-  // .force("x", d3.forceX().strength(100 / width).x(d => d.x))
-  // .force("y", d3.forceY().strength(100 / height).y(d => d.y));
 
-// Draw edges. Note we use 'let' here so we can update the selection later.
-let link = svg.append("g")
+// Draw edges.
+const link = svg.append("g")
   .selectAll("line")
   .data(links)
   .join("line")
@@ -66,11 +64,12 @@ simulation.on("tick", () => {
 // Append the SVG element to the network section.
 document.getElementById('network').appendChild(svg.node());
 
+let oldScroll = 0;
 window.addEventListener("scroll", () => {
-  let scrollY = window.scrollY;
-  let direction = (this.oldScroll > scrollY) ? 1 : -1;
-  this.oldScroll = scrollY;
-  
+  const scrollY = window.scrollY;
+  const direction = (oldScroll > scrollY) ? 1 : -1;
+  oldScroll = scrollY;
+
   nodes.forEach(d => {
     d.y += direction * scrollY * 0.001;
   });

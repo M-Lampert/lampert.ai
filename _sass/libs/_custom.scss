@@ -54,10 +54,10 @@
 	}
 
 /* Banner: blurred background image + translucent content box --------------- */
-// Replaces Alpha's overlay.png / banner.jpg background.
+// Replaces Alpha's overlay.png / banner.jpg background (which is removed in
+// main.scss, so no `background: none` reset is needed here).
 
 	#banner {
-		background: none;
 		overflow: hidden;
 		position: relative;
 
@@ -87,4 +87,28 @@
 			position: relative;
 			z-index: 1;
 		}
+	}
+
+/* Utility classes (replace repeated inline styles in the content pages) ---- */
+
+	.text-center {
+		text-align: center;
+	}
+
+	.text-justify {
+		text-align: justify;
+	}
+
+	// Author list on the publications page (accent colour).
+	.authors {
+		color: _palette(accent2, bg);
+	}
+
+	// Fixed-height research figures on the home page. Scoped to outrank the stock
+	// `.box .image.featured img { width: 100% }` rule (which would otherwise stretch
+	// the image and break its aspect ratio).
+	.box .image.featured img.home-figure {
+		height: 200px;
+		width: auto;
+		margin: auto;
 	}

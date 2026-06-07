@@ -1375,12 +1375,8 @@
 /* Banner */
 
 	#banner {
-		background-attachment:	scroll,							fixed;
-		background-color:		#666;
-		background-image:		url('images/overlay.png'),		url('../../images/banner.jpg');
-		background-position:	top left,						center center;
-		background-repeat:		repeat,							no-repeat;
-		background-size:		auto,							cover;
+		// Stock background image removed; see libs/_custom.scss for the blurred
+		// background image + translucent content box used instead.
 		color: #fff;
 		padding: 12em 0 20em 0;
 		text-align: center;

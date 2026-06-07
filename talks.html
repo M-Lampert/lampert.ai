@@ -8,21 +8,21 @@ og_description: Invited and contributed talks on temporal graph learning, link f
 <div class="box">
     <div class="col-12">
         <h2>2025</h2>
-        <ul class="alt" style="text-align: center;">
+        <ul class="alt text-center">
             <li>
                 <strong>From Link Prediction to Forecasting: Addressing Challenges in Batch-based Temporal Graph Learning</strong> <br>
                 Contributed Talk at <a href="https://sites.google.com/view/tenet-netsci/home">TENET@NetSci25</a> <br>
                 <time datetime="2025-06-02">June 2, 2025</time>, Maastricht, Netherlands
                 <details>
                     <summary>Abstract</summary>
-                    <p style="text-align: justify;">
+                    <p class="text-justify">
                         Many real-world applications — like recommending products or predicting social network behavior — are modeled as link prediction problems on temporal graphs using TGNNs. Although these models are ideally evaluated by their ability to predict future links within a fixed time window, in practice they are trained using temporal batches (chunks of equally sized link sets). This batching approach can lead to issues such as loss of fine-grained temporal information, artificial ordering of events, and inconsistent task difficulties across batches due to varying time spans, which in turn makes model performance comparisons problematic. To address these challenges, our work quantifies the resulting information loss and leakage and proposes a dynamic link forecasting task based on fixed time windows instead of arbitrary batches, yielding a more realistic and fair evaluation that better reflects real-world scenarios.
                     </p>
                 </details>
             </li>
         </ul>
         <h2>2024</h2>
-        <ul class="alt" style="text-align: center;">
+        <ul class="alt text-center">
             <li>
                 <strong>From Link Prediction to Forecasting: Information Loss in Batch-based Temporal Graph Learning</strong> <br>
                 Invited Talk at the <a href="https://shenyanghuang.github.io/rg.html">Temporal Graph Reading Group</a> <br>
@@ -30,7 +30,7 @@ og_description: Invited and contributed talks on temporal graph learning, link f
                 <a href="https://youtu.be/-vlnL_1dkWE"><i class="fa-brands fa-youtube"></i> Watch Recording</a>
                 <details>
                     <summary>Abstract</summary>
-                    <p style="text-align: justify;">
+                    <p class="text-justify">
                         Dynamic link prediction is an important problem considered by many recent works proposing various approaches for learning temporal edge patterns. To assess their efficacy, models are evaluated on publicly available benchmark datasets involving continuous-time and discrete-time temporal graphs. However, as we show in this work, the suitability of common batch-oriented evaluation depends on the datasets' characteristics, which can cause two issues: First, for continuous-time temporal graphs, fixed-size batches create time windows with different durations, resulting in an inconsistent dynamic link prediction task. Second, for discrete-time temporal graphs, the sequence of batches can additionally introduce temporal dependencies that are not present in the data. In this work, we empirically show that this common evaluation approach leads to skewed model performance and hinders the fair comparison of methods. We mitigate this problem by reformulating dynamic link prediction as a link forecasting task that better accounts for temporal information present in the data. We provide implementations of our new evaluation method for commonly used graph learning frameworks.
                     </p>
                 </details>
@@ -41,7 +41,7 @@ og_description: Invited and contributed talks on temporal graph learning, link f
                 <time datetime="2024-05-31">May 31, 2024</time>, Würzburg, Germany
                 <details>
                     <summary>Zusammenfassung</summary>
-                    <p style="text-align: justify;">
+                    <p class="text-justify">
                         Daten gibt es in vielen verschiedenen Formen wie beispielsweise Text, Bildern, Musik oder Excel-Tabellen. So wie ein Computer diese Datentypen mit unterschiedlichen Programmen öffnet, gibt es auch verschiedene KI-Modelle für die jeweiligen Datentypen. In dieser Demo zeigen wir anhand der Science Fiction Saga "Star Wars", wie moderne KI-Methoden mit verschiedenen Datentypen umgehen. Im Detail fokussieren wir uns auf Texte und Netzwerke. <br>
                         Der große Erfolg von ChatGPT hat uns allen gezeigt, was moderne KI-Methoden erreichen können, wenn sie mit genügend Text gefüttert werden. Mittlerweile ist aber auch klar, dass sich alleine durch sogenannte Large Language Models nicht alle Probleme lösen lassen.
                         So halluzinieren diese Modelle beispielsweise und es gibt große Bedenken beim Datenschutz. In einem Teil unserer Demo erklären wir die sogenannte "Retrival Augmented Generation", ein Ansatz, mit dem sich diese Probleme lösen lassen. <br>
@@ -55,7 +55,7 @@ og_description: Invited and contributed talks on temporal graph learning, link f
                 <time datetime="2024-04-19">April 19, 2024</time>, Würzburg, Germany
                 <details>
                     <summary>Abstract</summary>
-                    <p style="text-align: justify;">
+                    <p class="text-justify">
                         Data comes in many different forms, such as text, images, music, or Excel spreadsheets. Just as a computer opens these data types with different programs, there are various AI models tailored to each type. In this demo, we illustrate how modern AI methods handle different data types by using the science fiction saga "Star Wars" as an example. In particular, we focus on texts and networks. <br>
                         The great success of ChatGPT has shown us all what modern AI methods can achieve when provided with enough text. However, it is now clear that so-called large language models alone cannot solve all problems. For instance, these models tend to hallucinate, and there are significant concerns regarding data protection. In one part of our demo, we explain the so-called "Retrieval Augmented Generation," an approach that can address these issues. <br>
                         Texts, however, are not the only data to which we can apply AI methods in today's interconnected world: supply chains, the internet, and social networks can be represented as graphs. In another part, we demonstrate how AI can learn from such graphs and outline the areas in which these AI models are deployed.
