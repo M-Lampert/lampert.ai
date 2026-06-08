@@ -83,6 +83,18 @@
 		padding: 3em 0;
 	}
 
+/* Header logo (the "ML" monogram replaces the site name) ------------------- */
+
+	#header h1 a.site-logo {
+		display: flex;
+		align-items: center;
+		height: 100%;
+	}
+	#header h1 a.site-logo svg {
+		height: 2.25em;
+		width: auto;
+	}
+
 /* Inline SVG icons (replaces FontAwesome) ---------------------------------- */
 // Icons live in _includes/icons/*.svg and are pulled in with {% include %}.
 // They inherit the text colour via `fill: currentColor`. See the README
