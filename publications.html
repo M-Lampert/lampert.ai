@@ -6,36 +6,22 @@ banner_subtitle: Peer-Reviewed and Workshop Publications
 description: Peer-reviewed and workshop publications by Moritz Lampert on temporal graph learning, graph neural networks, and machine learning on graphs.
 og_description: Peer-reviewed and workshop publications on temporal graph learning, graph neural networks, and machine learning on graphs.
 ---
+<!-- Entries live in _data/publications.yml -->
 <div class="box">
     <div class="col-12">
         <ul class="alt text-center">
+            {% for pub in site.data.publications %}
             <li>
-                <strong>From Link Prediction to Forecasting: Addressing Challenges in Batch-based Temporal Graph Learning</strong> <br>
-                <i><span class="authors">Moritz Lampert, Christopher Blöcker and Ingo Scholtes</span></i> <br>
-                in Transactions on Machine Learning Research, February 2026
+                <strong>{{ pub.title }}</strong> <br>
+                <i><span class="authors">{{ pub.authors }}</span></i> <br>
+                {{ pub.venue }}
                 <ul class="icons">
-                    <li><a href="https://arxiv.org/pdf/2406.04897" class="icon" aria-label="PDF">{% include icons/file-pdf.svg %}</a></li>
-                    <li><a href="https://github.com/M-Lampert/DyGLib" class="icon" aria-label="Code">{% include icons/file-code.svg %}</a></li>
+                    {% for link in pub.links %}
+                    <li><a href="{{ link.url }}" class="icon" aria-label="{% if link.type == 'pdf' %}PDF{% else %}Code{% endif %}">{% if link.type == 'pdf' %}{% include icons/file-pdf.svg %}{% else %}{% include icons/file-code.svg %}{% endif %}</a></li>
+                    {% endfor %}
                 </ul>
             </li>
-            <li>
-                <strong>Cell-Type Prediction in Spatial Transcriptomics Data using Graph Neural Networks</strong> <br>
-                <i><span class="authors">Moritz Lampert, Christopher Blöcker, Ingo Scholtes and Dominic Grün</span></i> <br>
-                at Workshop MLGenX at the International Conference on Learning Representations (ICLR), May 2024
-                <ul class="icons">
-                    <li><a href="https://openreview.net/pdf?id=vlnaFzmYkI" class="icon" aria-label="PDF">{% include icons/file-pdf.svg %}</a></li>
-                    <li><a href="https://github.com/M-Lampert/cell-type-prediction-in-spatial-transcriptomics-data-using-gnns" class="icon" aria-label="Code">{% include icons/file-code.svg %}</a></li>
-                </ul>
-            </li>
-            <li>
-                <strong>The Self-loop Paradox: Investigating the Impact of Self-Loops on Graph Neural Networks</strong> <br>
-                <i><span class="authors">Moritz Lampert and Ingo Scholtes</span></i> <br>
-                at the Second Learning on Graphs Conference (LoG), November 2023
-                <ul class="icons">
-                    <li><a href="https://arxiv.org/pdf/2312.01721" class="icon" aria-label="PDF">{% include icons/file-pdf.svg %}</a></li>
-                    <li><a href="https://github.com/M-Lampert/self-loop-paradox" class="icon" aria-label="Code">{% include icons/file-code.svg %}</a></li>
-                </ul>
-            </li>
+            {% endfor %}
         </ul>
     </div>
 </div>

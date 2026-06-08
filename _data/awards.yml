@@ -1,0 +1,11 @@
+# Awards shown on awards.html (in this order).
+# Each entry: name (+ url it links to), thesis title, and institution line.
+- name: "Price for best M.Sc. Thesis in the Area of Artificial Intelligence and Data Science 2023"
+  url: "https://www.caidas.uni-wuerzburg.de/news/single/news/price-for-best-student-thesis-2023-awarded-to-jan-lennart-keller-and-moritz-lampert/"
+  thesis: "Cell Type Prediction in Spatial Transcriptomics Data using Graph Neural Networks"
+  institution: "Julius-Maximilians-Universität donated by Vogel Stiftung Dr. Eckernkamp, Würzburg, Germany"
+
+- name: "Price for best B.Sc. Thesis in the Area of Artificial Intelligence and Data Science 2021"
+  url: "https://www.caidas.uni-wuerzburg.de/news/single/news/price-for-best-student-thesis-2020-awarded-to-vanessa-borst-and-moritz-lampert/"
+  thesis: "Privacy of Neural Network Models"
+  institution: "Julius-Maximilians-Universität donated by Vogel Stiftung Dr. Eckernkamp, Würzburg, Germany"

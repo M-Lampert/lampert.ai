@@ -20,8 +20,9 @@ It is a static site built with [Jekyll](https://jekyllrb.com/) and hosted on
 .
 ├── _config.yml        # Site-wide settings (title, author, URL, SASS, build excludes)
 ├── _layouts/          # Page templates (default.html wraps every page)
-├── _includes/         # Reusable snippets (header, banner, footer)
+├── _includes/         # Reusable snippets (header, banner, footer, icons/)
 ├── _sass/             # SCSS partials (libs/) — compiled to CSS by Jekyll
+├── _data/             # Content data (publications, talks, awards) as YAML
 ├── *.html             # Pages — each has YAML front matter + content
 ├── assets/            # Adapted HTML5UP template: SCSS entry, JS, fonts
 │   └── css/main.scss  # SCSS entry point → Jekyll compiles it to main.css
@@ -35,6 +36,23 @@ sets `layout: default` plus per-page variables (`title`, `description`, banner o
 Jekyll injects the page body into [`_layouts/default.html`](_layouts/default.html), which in
 turn pulls in the shared [`_includes/`](_includes/) snippets — so the markup lives in one
 place instead of being copy-pasted across pages.
+
+## Content (publications, talks, awards)
+
+The entries on the Publications, Talks, and Awards pages are **data, not markup**: they live in
+[`_data/publications.yml`](_data/publications.yml), [`_data/talks.yml`](_data/talks.yml), and
+[`_data/awards.yml`](_data/awards.yml). The pages ([`publications.html`](publications.html),
+[`talks.html`](talks.html), [`awards.html`](awards.html)) just loop over that data, so to
+add/edit/remove an entry you only touch the YAML.
+
+- **Publication** — `title`, `authors`, `venue`, and `links` (each `{ type: pdf | code, url: … }`).
+  Listed top-to-bottom in file order (newest first).
+- **Talk** — `title`; `event` (text before the linked name) plus optional `event_name` +
+  `event_url`; `date` (`YYYY-MM-DD`); optional `location`, `recording` (URL → a "Watch Recording"
+  link), `abstract`, and `abstract_label` (defaults to "Abstract"; use "Zusammenfassung" for German).
+  Talks are sorted by `date` and grouped by year automatically — order in the file doesn't matter.
+  In an `abstract`, leave a **blank line** to get a line break.
+- **Award** — `name`, the `url` it links to, `thesis` title, and `institution`.
 
 ## Local development
 
