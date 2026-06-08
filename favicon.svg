@@ -1,13 +1,41 @@
-<!-- Site favicon — a small node-link graph in the site accent colour. -->
+<!-- Site favicon — the initials "ML" as a node-link graph in the site palette
+     (coral M, blue-grey L). The shared central stem is split by a chevron gap
+     cut at the M's inner-diagonal angle, so the coral piece ends in a downward
+     point echoing the M's valley. The node centres adapt to the OS colour scheme
+     (dark in light mode, light in dark mode). Inspired by, but distinct from,
+     the ML4Nets logo. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <g stroke="#e89980" stroke-width="2.5" stroke-linecap="round">
-    <line x1="8" y1="9" x2="24" y2="11" />
-    <line x1="8" y1="9" x2="16" y2="24" />
-    <line x1="24" y1="11" x2="16" y2="24" />
+  <style>
+    .neutral {
+      fill: #666666;
+    }
+    @media (prefers-color-scheme: dark) {
+      .neutral {
+        fill: #f5f5f5;
+      }
+    }
+  </style>
+  <g stroke-linecap="round" fill="none">
+    <path d="M6.5 8 V24 M6.5 8 L12.5 15 L18.5 8" stroke="#e89980" stroke-width="3.5" />
+    <path d="M18.5 24 H27" stroke="#6e93a6" stroke-width="3.5" />
   </g>
-  <g fill="#e89980">
-    <circle cx="8" cy="9" r="4.5" />
-    <circle cx="24" cy="11" r="4.5" />
-    <circle cx="16" cy="24" r="4.5" />
+  <!-- shared stem split by a chevron gap (coral point down, blue notch) -->
+  <polygon points="16.75,8 20.25,8 20.25,15.96 18.5,18 16.75,15.96" fill="#e89980" />
+  <polygon points="16.75,17.16 18.5,19.2 20.25,17.16 20.25,24 16.75,24" fill="#6e93a6" />
+  <g>
+    <circle cx="6.5" cy="8" r="3" fill="#e89980" />
+    <circle cx="6.5" cy="24" r="3" fill="#e89980" />
+    <circle cx="12.5" cy="15" r="3" fill="#e89980" />
+    <circle cx="18.5" cy="8" r="3" fill="#e89980" />
+    <circle cx="18.5" cy="24" r="3" fill="#6e93a6" />
+    <circle cx="27" cy="24" r="3" fill="#6e93a6" />
+  </g>
+  <g>
+    <circle cx="6.5" cy="8" r="1.4" class="neutral" />
+    <circle cx="6.5" cy="24" r="1.4" class="neutral" />
+    <circle cx="12.5" cy="15" r="1.4" class="neutral" />
+    <circle cx="18.5" cy="8" r="1.4" class="neutral" />
+    <circle cx="18.5" cy="24" r="1.4" class="neutral" />
+    <circle cx="27" cy="24" r="1.4" class="neutral" />
   </g>
 </svg>
