@@ -39,6 +39,12 @@
     <meta name="theme-color" content="#f5f5f5" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#15171c" media="(prefers-color-scheme: dark)" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    {% if page.map %}
+    <!-- Leaflet (self-hosted) — only loaded on map pages -->
+    <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="assets/vendor/leaflet/MarkerCluster.css" />
+    <link rel="stylesheet" href="assets/vendor/leaflet/MarkerCluster.Default.css" />
+    {% endif %}
     {% if page.url == "/" %}
     <!-- Structured data: the site owner -->
     <script type="application/ld+json">
@@ -61,7 +67,7 @@
     {% endif %}
 </head>
 
-<body class="landing is-preload">
+<body class="landing is-preload{% if page.map %} has-map{% endif %}">
     <div id="page-wrapper">
 
         <!-- Header -->
@@ -85,19 +91,27 @@
 
     </div>
 
-    <!-- Scripts (deferred: execute in order after parsing, off the critical path) -->
-    <script defer src="assets/js/jquery.min.js"></script>
-    <script defer src="assets/js/jquery.dropotron.min.js"></script>
-    <script defer src="assets/js/jquery.scrollex.min.js"></script>
-    <script defer src="assets/js/browser.min.js"></script>
-    <script defer src="assets/js/breakpoints.min.js"></script>
+    <!-- Scripts (deferred: execute in order after parsing, off the critical path).
+         Third-party libraries live in assets/vendor/; template + custom code in assets/js/. -->
+    <script defer src="assets/vendor/jquery/jquery.min.js"></script>
+    <script defer src="assets/vendor/dropotron/jquery.dropotron.min.js"></script>
+    <script defer src="assets/vendor/scrollex/jquery.scrollex.min.js"></script>
+    <script defer src="assets/vendor/browser/browser.min.js"></script>
+    <script defer src="assets/vendor/breakpoints/breakpoints.min.js"></script>
     <script defer src="assets/js/util.js"></script>
     <script defer src="assets/js/main.js"></script>
 
-    <script defer src="assets/js/d3.v7.min.js"></script>
+    <script defer src="assets/vendor/d3/d3.v7.min.js"></script>
     <script defer src="assets/js/network.js"></script>
 
     <script defer src="assets/js/theme-toggle.js"></script>
+
+    {% if page.map %}
+    <!-- Leaflet map (self-hosted), only on map pages -->
+    <script defer src="assets/vendor/leaflet/leaflet.js"></script>
+    <script defer src="assets/vendor/leaflet/leaflet.markercluster.js"></script>
+    <script defer src="assets/js/talks-map.js"></script>
+    {% endif %}
 
 </body>
 

@@ -2,10 +2,18 @@
 layout: default
 title: Talks | Moritz Lampert
 banner_title: Talks
+map: true
 description: Invited and contributed talks by Moritz Lampert on temporal graph learning, link forecasting, and machine learning on graphs.
 og_description: Invited and contributed talks on temporal graph learning, link forecasting, and machine learning on graphs.
 ---
-<!-- Entries live in _data/talks.yml (sorted by date, grouped by year below) -->
+<!-- Talk entries live in _data/talks.yml; coordinates in _data/talk_locations.yml -->
+
+<!-- Map hero lives in the banner (see _includes/banner.html); its data is inlined
+     here as JSON and rendered by assets/js/talks-map.js -->
+<script id="talks-data" type="application/json">[
+{% assign first = true %}{% assign sorted = site.data.talks | sort: "date" %}{% for talk in sorted %}{% assign loc = site.data.talk_locations[talk.address] %}{% if loc %}{% unless first %},{% endunless %}{"title": {{ talk.title | jsonify }}, "date": "{{ talk.date | date: '%Y-%m-%d' }}", "lat": {{ loc.lat }}, "lon": {{ loc.lon }}, "tag": {{ talk.tag | default: "contributed" | jsonify }}, "location": {{ talk.location | default: "" | jsonify }}}{% assign first = false %}{% endif %}{% endfor %}
+]</script>
+
 <div class="box">
     <div class="col-12">
         {% assign talks = site.data.talks | sort: "date" | reverse %}
@@ -16,7 +24,7 @@ og_description: Invited and contributed talks on temporal graph learning, link f
             {% for talk in group.items %}
             <li>
                 <strong>{{ talk.title }}</strong> <br>
-                {{ talk.event }}{% if talk.event_name %} <a href="{{ talk.event_url }}">{{ talk.event_name }}</a>{% endif %} <br>
+                {% if talk.tag %}<span class="tag-pin tag-pin--{{ talk.tag }}" title="{{ talk.tag | capitalize }}">{% include icons/map-pin.svg %}</span> {% endif %}{{ talk.event }}{% if talk.event_name %} <a href="{{ talk.event_url }}">{{ talk.event_name }}</a>{% endif %} <br>
                 <time datetime="{{ talk.date | date: '%Y-%m-%d' }}">{{ talk.date | date: '%B %-d, %Y' }}</time>{% if talk.location %}, {{ talk.location }}{% endif %}
                 {% if talk.recording %} <br>
                 <a href="{{ talk.recording }}"><span class="icon">{% include icons/youtube.svg %}</span> Watch Recording</a>

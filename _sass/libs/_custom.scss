@@ -52,6 +52,7 @@
 			top: 0;
 			left: 0;
 			height: 100%;
+			max-width: 100%; // never exceed the page width (its px width is set in JS)
 			z-index: -1; // behind page content
 		}
 
@@ -194,4 +195,146 @@
 		height: 200px;
 		width: auto;
 		margin: auto;
+	}
+
+/* Talks map (Leaflet) ------------------------------------------------------ */
+// The Talks page (front matter `map: true`) shows the interactive map *as the
+// banner background* (where the background image used to be), with the "Talks"
+// title overlaid on top. Tag colours mirror TAGS in assets/js/talks-map.js.
+
+	// Map page: the map replaces the banner background image. Banner size and the
+	// content overlap stay at the stock landing values, so the map hero is exactly
+	// as big as the image hero was and the content overlaps it the same way.
+	#banner.has-map {
+		background: #2c3038; // fallback shown behind the map / while tiles load
+
+		&::before {
+			content: none; // drop the background image
+		}
+	}
+
+	// The map fills the banner; the .banner-content title overlays it (z-index 1).
+	#talks-map {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		background: #2c3038;
+	}
+
+	// The header is transparent over the banner; over the light map its links would
+	// be invisible, so give it the (partly transparent) scrolled-state bar colour.
+	body.has-map #header.alt {
+		background-color: rgba(68, 68, 68, 0.7);
+	}
+
+	// #network/#main overlap the banner by -14em and #main has ~4em of transparent
+	// top padding, all of which sits over the map and swallows clicks. Make those
+	// containers pass pointer events through to the map (pointer-events is inherited,
+	// so #network: none covers #main too); re-enable the actual content box only.
+	body.has-map #network {
+		pointer-events: none;
+	}
+	body.has-map #main > * {
+		pointer-events: auto;
+	}
+
+	// Content overlaps the bottom ~14em of the banner (stock landing hero), so the
+	// usual bottom corners are hidden. Centre the zoom (right) and attribution
+	// (left, required by OSM) vertically in the still-visible band instead.
+	body.has-map {
+		.leaflet-top.leaflet-left,
+		.leaflet-top.leaflet-right {
+			top: calc(50% - 7em); // visible band centre (overlap hides bottom 14em)
+			bottom: auto;
+			transform: translateY(-50%);
+		}
+		.leaflet-control-attribution {
+			writing-mode: vertical-rl;
+			transform: rotate(180deg); // read bottom-to-top, up the left edge
+			margin: 0;
+			padding: 0.6em 0.3em;
+			border-radius: 0 4px 4px 0;
+			font-size: 0.62em;
+			line-height: 1;
+		}
+	}
+	@include breakpoint("<=mobile") {
+		// Overlap is dropped at this size — the band is the full map again.
+		body.has-map .leaflet-top.leaflet-left,
+		body.has-map .leaflet-top.leaflet-right {
+			top: 50%;
+		}
+	}
+
+	// Leaflet bits styled to the site.
+	.leaflet-container a {
+		border-bottom: none; // kill the site's dotted link underline inside the map
+	}
+	.talks-map-tiles {
+		filter: brightness(1.05) saturate(0.7);
+	}
+
+	.talk-cluster {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+		background: #546e7a;
+		color: #fff;
+		font-size: 12px;
+		font-weight: 700;
+		border: 2px solid rgba(255, 255, 255, 0.7);
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+	}
+
+	.talk-pop-meta {
+		font-size: 0.85em;
+		color: #666;
+		margin-top: 0.25em;
+	}
+
+	// Tag pin before each talk's event line — a small map-pin glyph in the tag
+	// colour, mirroring the map markers (colour set via currentColor).
+	.tag-pin {
+		display: inline-block;
+		width: 0.7em;
+		height: 1em;
+		vertical-align: -0.12em;
+		margin-right: 0.1em;
+
+		svg {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+
+		&--keynote {
+			color: #e74c3c;
+		}
+		&--invited {
+			color: #3498db;
+		}
+		&--contributed {
+			color: #2ecc71;
+		}
+		&--poster {
+			color: #9b59b6;
+		}
+	}
+
+	// Dark mode: dark basemap + dark popups.
+	[data-theme="dark"] {
+		.talks-map-tiles {
+			filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9);
+		}
+		.leaflet-popup-content-wrapper,
+		.leaflet-popup-tip {
+			background: #1e2128;
+			color: #b9bcc2;
+		}
+		.talk-pop-meta {
+			color: #9aa0a8;
+		}
 	}

@@ -1,4 +1,6 @@
-const width = window.innerWidth;
+// clientWidth excludes the vertical scrollbar (innerWidth includes it, which would
+// make the SVG a bit wider than the page and add a horizontal scrollbar).
+const width = document.documentElement.clientWidth;
 const height = document.documentElement.scrollHeight;
 
 // Generate 50 random nodes

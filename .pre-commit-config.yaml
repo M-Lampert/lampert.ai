@@ -22,11 +22,20 @@ repos:
     hooks:
       - id: prettier
         files: \.(css|js|md|json|ya?ml)$
-        exclude: ^assets/
+        exclude: ^(assets/|_data/talk_locations\.yml$) # talk_locations.yml is generated
 
-  # Secret scanning using the gitleaks binary baked into the dev image.
   - repo: local
     hooks:
+      # Geocode new/changed talk addresses -> _data/talk_locations.yml.
+      - id: geocode-talks
+        name: geocode talk addresses
+        entry: python scripts/geocode_talks.py
+        language: python
+        additional_dependencies: ["pyyaml"]
+        files: ^_data/talks\.yml$
+        pass_filenames: false
+
+      # Secret scanning using the gitleaks binary baked into the dev image.
       - id: gitleaks
         name: gitleaks
         entry: gitleaks git --pre-commit --redact --staged --verbose

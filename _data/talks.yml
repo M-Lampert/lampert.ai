@@ -6,12 +6,19 @@
 # recording (optional URL -> "Watch Recording" link), abstract (optional),
 # abstract_label (optional, defaults to "Abstract").
 # In an abstract, a blank line becomes a line break (<br>).
+#
+# For the map (talks.html hero):
+#   tag:     poster | invited | contributed | keynote   (marker colour/icon + list badge)
+#   address: a geocodable place; the geocode pre-commit hook fills lat/lon into
+#            _data/talk_locations.yml (see scripts/geocode_talks.py).
 
 - title: "From Link Prediction to Forecasting: Addressing Challenges in Batch-based Temporal Graph Learning"
   event: "Contributed Talk at"
   event_name: "TENET@NetSci25"
   event_url: "https://sites.google.com/view/tenet-netsci/home"
   date: 2025-06-02
+  tag: contributed
+  address: "Maastricht, Netherlands"
   location: "Maastricht, Netherlands"
   abstract: >-
     Many real-world applications — like recommending products or predicting social network behavior — are modeled as link prediction problems on temporal graphs using TGNNs. Although these models are ideally evaluated by their ability to predict future links within a fixed time window, in practice they are trained using temporal batches (chunks of equally sized link sets). This batching approach can lead to issues such as loss of fine-grained temporal information, artificial ordering of events, and inconsistent task difficulties across batches due to varying time spans, which in turn makes model performance comparisons problematic. To address these challenges, our work quantifies the resulting information loss and leakage and proposes a dynamic link forecasting task based on fixed time windows instead of arbitrary batches, yielding a more realistic and fair evaluation that better reflects real-world scenarios.
@@ -21,6 +28,8 @@
   event_name: "Temporal Graph Reading Group"
   event_url: "https://shenyanghuang.github.io/rg.html"
   date: 2024-09-19
+  tag: invited
+  address: "McGill University, Montréal, Canada"
   location: "McGill University, Montréal, Canada"
   recording: "https://youtu.be/-vlnL_1dkWE"
   abstract: >-
@@ -31,6 +40,8 @@
   event_name: "27. Medienstudierendentagung (MeStuTa)"
   event_url: "https://www.hw.uni-wuerzburg.de/fsi-mk/medienstudierendentagung-2024-rueckblick/"
   date: 2024-05-31
+  tag: contributed
+  address: "Sanderring 2, 97070 Würzburg, Germany"
   location: "Würzburg, Germany"
   abstract_label: "Zusammenfassung"
   abstract: >-
@@ -45,6 +56,8 @@
   event_name: "Opening Ceremony of the Center for Artificial Intelligence and Data Science (CAIDAS)"
   event_url: "https://www.caidas.uni-wuerzburg.de/news/single/news/new-building-for-caidas-opened-with-bavarias-minister-of-science/"
   date: 2024-04-19
+  tag: contributed
+  address: "Am Hubland, 97074 Würzburg, Germany"
   location: "Würzburg, Germany"
   abstract: >-
     Data comes in many different forms, such as text, images, music, or Excel spreadsheets. Just as a computer opens these data types with different programs, there are various AI models tailored to each type. In this demo, we illustrate how modern AI methods handle different data types by using the science fiction saga "Star Wars" as an example. In particular, we focus on texts and networks.

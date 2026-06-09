@@ -25,7 +25,9 @@ It is a static site built with [Jekyll](https://jekyllrb.com/) and hosted on
 ├── _data/             # Content data (publications, talks, awards) as YAML
 ├── *.html             # Pages — each has YAML front matter + content
 ├── assets/            # Adapted HTML5UP template: SCSS entry, JS, fonts
-│   └── css/main.scss  # SCSS entry point → Jekyll compiles it to main.css
+│   ├── css/main.scss  # SCSS entry point → Jekyll compiles it to main.css
+│   ├── js/            # Template scripts (main.js, util.js) + custom (network.js, theme-toggle.js, talks-map.js)
+│   └── vendor/        # Third-party libraries, one folder each (jquery, d3, leaflet, …)
 ├── images/            # Images used across the site
 ├── CNAME              # Custom domain for GitHub Pages
 └── _site/             # Build output (generated, git-ignored)
@@ -51,8 +53,27 @@ add/edit/remove an entry you only touch the YAML.
   `event_url`; `date` (`YYYY-MM-DD`); optional `location`, `recording` (URL → a "Watch Recording"
   link), `abstract`, and `abstract_label` (defaults to "Abstract"; use "Zusammenfassung" for German).
   Talks are sorted by `date` and grouped by year automatically — order in the file doesn't matter.
-  In an `abstract`, leave a **blank line** to get a line break.
+  In an `abstract`, leave a **blank line** to get a line break. For the **map** (below): `tag`
+  (`poster | invited | contributed | keynote`) and `address` (a geocodable place).
 - **Award** — `name`, the `url` it links to, `thesis` title, and `institution`.
+
+## Talks map
+
+The Talks page shows an interactive [Leaflet](https://leafletjs.com) map (the page hero) with a
+tagged marker per talk and animated connection arcs drawn from the home base to each talk in
+chronological order. Leaflet is **self-hosted** ([`assets/vendor/leaflet/`](assets/vendor/leaflet/))
+and only loaded on pages with `map: true` in their front matter; map tiles come from OpenStreetMap.
+
+- **Locations**: give each talk an `address` in [`_data/talks.yml`](_data/talks.yml). A pre-commit
+  hook ([`scripts/geocode_talks.py`](scripts/geocode_talks.py)) geocodes new/changed addresses to
+  lat/lon via OpenStreetMap Nominatim and caches them in
+  [`_data/talk_locations.yml`](_data/talk_locations.yml) (generated — don't hand-edit). GitHub Pages
+  can't geocode at build time, so **adding a talk needs you to be online once** for the hook to run
+  (it never blocks a commit if offline; just re-run later). Run manually with
+  `uv run --with pyyaml python scripts/geocode_talks.py`.
+- **Tags**: each talk's `tag` sets its marker colour/letter on the map and its badge in the list.
+- **Config**: marker colours, tag labels, and the home base (University of Würzburg) live at the top
+  of [`assets/js/talks-map.js`](assets/js/talks-map.js).
 
 ## Local development
 

@@ -1,4 +1,5 @@
-<section id="banner"{% if page.banner_blurred != false %} class="blurred"{% endif %}>
+<section id="banner" class="{% if page.banner_blurred != false %}blurred{% endif %}{% if page.map %} has-map{% endif %}">
+    {% if page.map %}<div id="talks-map" aria-label="Map of talk locations"></div>{% endif %}
     <div class="banner-content"{% if page.banner_image %} style="background-color: rgba(0, 0, 0, 0);"{% endif %}>
         {% if page.banner_image %}
         {% assign banner_ext = page.banner_image | split: "." | last %}
