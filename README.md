@@ -27,7 +27,7 @@ It is a static site built with [Jekyll](https://jekyllrb.com/) and hosted on
 ├── assets/            # Adapted HTML5UP template: SCSS entry, JS, fonts
 │   ├── css/main.scss  # SCSS entry point → Jekyll compiles it to main.css
 │   ├── js/            # Template scripts (main.js, util.js) + custom (network.js, theme-toggle.js, talks-map.js)
-│   └── vendor/        # Third-party libraries, one folder each (jquery, d3, leaflet, …)
+│   └── vendor/        # Third-party libraries, one folder each (jquery, leaflet, …)
 ├── images/            # Images used across the site
 ├── CNAME              # Custom domain for GitHub Pages
 └── _site/             # Build output (generated, git-ignored)
@@ -156,8 +156,10 @@ Modifications from the original template include:
   [`_sass/libs/`](_sass/libs/), is the single source of truth; Jekyll generates
   `assets/css/main.css` at build time (it is no longer hand-committed). Site-specific overrides
   live in [`_sass/libs/_custom.scss`](_sass/libs/_custom.scss), imported last.
-- **Custom D3 graph background** ([`assets/js/network.js`](assets/js/network.js)) drawn behind the
-  page content.
+- **Custom animated graph background** ([`assets/js/network.js`](assets/js/network.js)) drawn behind
+  the page content: nodes drift slowly, bounce off the page borders, and are swept along by
+  scrolling; edges connect nodes by proximity. Plain JS/SVG (no library); tunables are constants at
+  the top of the file.
 
 The template's color palette and main stylesheet are otherwise unchanged from stock Alpha — the only
 visual customizations live in [`_sass/libs/_custom.scss`](_sass/libs/_custom.scss).

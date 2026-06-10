@@ -138,8 +138,8 @@
 			background: #1a1c21;
 		}
 
-		// Decorative D3 background graph — keep it subtle on dark.
-		#network > svg line {
+		// Decorative background graph — keep it subtle on dark.
+		#network > svg path {
 			stroke: #2b2f37;
 		}
 		#network > svg circle {
