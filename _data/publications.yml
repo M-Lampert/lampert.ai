@@ -1,8 +1,12 @@
-# Publications shown on publications.html (newest first = top of this file).
-# Each entry: title, authors, venue, and links (type: pdf | code).
+# Publications shown on publications.html. They are sorted by `date` (newest
+# first) and grouped by year automatically, so order in this file does not
+# matter. The date is only used for sorting/grouping (year + month suffice;
+# the displayed date stays part of `venue`).
+# Each entry: title, authors, venue, date (YYYY-MM-DD), links (type: pdf | code).
 - title: "From Link Prediction to Forecasting: Addressing Challenges in Batch-based Temporal Graph Learning"
   authors: "Moritz Lampert, Christopher Blöcker and Ingo Scholtes"
   venue: "in Transactions on Machine Learning Research, February 2026"
+  date: 2026-02-01
   links:
     - { type: pdf, url: "https://arxiv.org/pdf/2406.04897" }
     - { type: code, url: "https://github.com/M-Lampert/DyGLib" }
@@ -10,6 +14,7 @@
 - title: "Cell-Type Prediction in Spatial Transcriptomics Data using Graph Neural Networks"
   authors: "Moritz Lampert, Christopher Blöcker, Ingo Scholtes and Dominic Grün"
   venue: "at Workshop MLGenX at the International Conference on Learning Representations (ICLR), May 2024"
+  date: 2024-05-11
   links:
     - { type: pdf, url: "https://openreview.net/pdf?id=vlnaFzmYkI" }
     - {
@@ -20,6 +25,7 @@
 - title: "The Self-loop Paradox: Investigating the Impact of Self-Loops on Graph Neural Networks"
   authors: "Moritz Lampert and Ingo Scholtes"
   venue: "at the Second Learning on Graphs Conference (LoG), November 2023"
+  date: 2023-11-27
   links:
     - { type: pdf, url: "https://arxiv.org/pdf/2312.01721" }
     - { type: code, url: "https://github.com/M-Lampert/self-loop-paradox" }

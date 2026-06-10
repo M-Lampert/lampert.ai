@@ -14,20 +14,22 @@ og_description: Invited and contributed talks on temporal graph learning, link f
 {% assign first = true %}{% assign sorted = site.data.talks | sort: "date" %}{% for talk in sorted %}{% assign loc = site.data.talk_locations[talk.address] %}{% if loc %}{% unless first %},{% endunless %}{"title": {{ talk.title | jsonify }}, "date": "{{ talk.date | date: '%Y-%m-%d' }}", "lat": {{ loc.lat }}, "lon": {{ loc.lon }}, "tag": {{ talk.tag | default: "contributed" | jsonify }}, "location": {{ talk.location | default: "" | jsonify }}}{% assign first = false %}{% endif %}{% endfor %}
 ]</script>
 
+{% assign talks = site.data.talks | sort: "date" | reverse %}
+{% assign by_year = talks | group_by_exp: "t", "t.date | date: '%Y'" %}
+{% for group in by_year %}
+<!-- One box per year so the animated background stays visible between them -->
 <div class="box">
     <div class="col-12">
-        {% assign talks = site.data.talks | sort: "date" | reverse %}
-        {% assign by_year = talks | group_by_exp: "t", "t.date | date: '%Y'" %}
-        {% for group in by_year %}
         <h2>{{ group.name }}</h2>
         <ul class="alt text-center">
             {% for talk in group.items %}
             <li>
                 <strong>{{ talk.title }}</strong> <br>
-                {% if talk.tag %}<span class="tag-pin tag-pin--{{ talk.tag }}" title="{{ talk.tag | capitalize }}">{% include icons/map-pin.svg %}</span> {% endif %}{{ talk.event }}{% if talk.event_name %} <a href="{{ talk.event_url }}">{{ talk.event_name }}</a>{% endif %} <br>
+                {% if talk.tag %}<span class="tag-pin tag-pin--{{ talk.tag }}{% if talk.online %} tag-pin-online{% endif %}" title="{{ talk.tag | capitalize }}{% if talk.online %} (online){% endif %}">{% if talk.online %}{% include icons/video.svg %}{% else %}{% include icons/map-pin.svg %}{% endif %}</span> {% endif %}{{ talk.event }}{% if talk.event_name %} <a href="{{ talk.event_url }}">{{ talk.event_name }}</a>{% endif %} <br>
                 <time datetime="{{ talk.date | date: '%Y-%m-%d' }}">{{ talk.date | date: '%B %-d, %Y' }}</time>{% if talk.location %}, {{ talk.location }}{% endif %}
-                {% if talk.recording %} <br>
-                <a href="{{ talk.recording }}"><span class="icon">{% include icons/youtube.svg %}</span> Watch Recording</a>
+                {% if talk.recording or talk.poster %} <br>
+                {% if talk.recording %}<a href="{{ talk.recording }}"><span class="icon">{% include icons/youtube.svg %}</span> Watch Recording</a>{% endif %}
+                {% if talk.poster %}<a href="{{ talk.poster }}" target="_blank" rel="noopener"><span class="icon">{% include icons/file-pdf.svg %}</span> Poster</a>{% endif %}
                 {% endif %}
                 {% if talk.abstract %}
                 <details>
@@ -38,6 +40,6 @@ og_description: Invited and contributed talks on temporal graph learning, link f
             </li>
             {% endfor %}
         </ul>
-        {% endfor %}
     </div>
 </div>
+{% endfor %}

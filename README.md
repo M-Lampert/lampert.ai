@@ -47,14 +47,17 @@ The entries on the Publications, Talks, and Awards pages are **data, not markup*
 [`talks.html`](talks.html), [`awards.html`](awards.html)) just loop over that data, so to
 add/edit/remove an entry you only touch the YAML.
 
-- **Publication** — `title`, `authors`, `venue`, and `links` (each `{ type: pdf | code, url: … }`).
-  Listed top-to-bottom in file order (newest first).
+- **Publication** — `title`, `authors`, `venue`, `date` (`YYYY-MM-DD`, used only for sorting and
+  year grouping — year + month suffice), and `links` (each `{ type: pdf | code, url: … }`).
+  Sorted by `date` and grouped by year automatically — order in the file doesn't matter.
 - **Talk** — `title`; `event` (text before the linked name) plus optional `event_name` +
   `event_url`; `date` (`YYYY-MM-DD`); optional `location`, `recording` (URL → a "Watch Recording"
   link), `abstract`, and `abstract_label` (defaults to "Abstract"; use "Zusammenfassung" for German).
   Talks are sorted by `date` and grouped by year automatically — order in the file doesn't matter.
-  In an `abstract`, leave a **blank line** to get a line break. For the **map** (below): `tag`
-  (`poster | invited | contributed | keynote`) and `address` (a geocodable place).
+  In an `abstract`, leave a **blank line** to get a line break. Optional `poster` links a file from
+  [`downloads/`](downloads/) (put poster PDFs/images there). For the **map** (below): `tag`
+  (`poster | invited | contributed | keynote`) and `address` (a geocodable place). For online
+  events set `online: true` (video-call icon instead of the map pin) and omit the `address`.
 - **Award** — `name`, the `url` it links to, `thesis` title, and `institution`.
 
 ## Talks map

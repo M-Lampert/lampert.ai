@@ -7,10 +7,15 @@ description: Peer-reviewed and workshop publications by Moritz Lampert on tempor
 og_description: Peer-reviewed and workshop publications on temporal graph learning, graph neural networks, and machine learning on graphs.
 ---
 <!-- Entries live in _data/publications.yml -->
+{% assign pubs = site.data.publications | sort: "date" | reverse %}
+{% assign by_year = pubs | group_by_exp: "p", "p.date | date: '%Y'" %}
+<!-- One box per year so the animated background stays visible between them -->
+{% for group in by_year %}
 <div class="box">
     <div class="col-12">
+        <h2>{{ group.name }}</h2>
         <ul class="alt text-center">
-            {% for pub in site.data.publications %}
+            {% for pub in group.items %}
             <li>
                 <strong>{{ pub.title }}</strong> <br>
                 <i><span class="authors">{{ pub.authors }}</span></i> <br>
@@ -25,3 +30,4 @@ og_description: Peer-reviewed and workshop publications on temporal graph learni
         </ul>
     </div>
 </div>
+{% endfor %}

@@ -296,13 +296,18 @@
 	}
 
 	// Tag pin before each talk's event line — a small map-pin glyph in the tag
-	// colour, mirroring the map markers (colour set via currentColor).
+	// colour, mirroring the map markers (colour set via currentColor). Online
+	// events show a video-call glyph instead (wider aspect than the pin).
 	.tag-pin {
 		display: inline-block;
 		width: 0.7em;
 		height: 1em;
 		vertical-align: -0.12em;
 		margin-right: 0.1em;
+
+		&.tag-pin-online {
+			width: 1.1em;
+		}
 
 		svg {
 			display: block;

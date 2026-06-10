@@ -3,7 +3,9 @@
 #
 # Fields: title, event (text before the optional linked name), event_name +
 # event_url (optional link), date (YYYY-MM-DD), location (optional),
-# recording (optional URL -> "Watch Recording" link), abstract (optional),
+# recording (optional URL -> "Watch Recording" link), poster (optional path to
+# a file in downloads/ -> "Poster" link), online (optional, true -> video-call
+# icon instead of the map pin; leave out the address too), abstract (optional),
 # abstract_label (optional, defaults to "Abstract").
 # In an abstract, a blank line becomes a line break (<br>).
 #
@@ -12,13 +14,22 @@
 #   address: a geocodable place; the geocode pre-commit hook fills lat/lon into
 #            _data/talk_locations.yml (see scripts/geocode_talks.py).
 
+- title: "The Self-Loop Paradox: Investigating the Impact of Self-Loops on GNNs"
+  event: "Contributed Talk at"
+  event_name: "NetSci 2026"
+  event_url: "https://www.netsci2026.com/"
+  date: 2026-06-04
+  tag: contributed
+  address: "575 Memorial Drive, Cambridge, MA 02139, USA" # Hyatt Regency Boston/Cambridge
+  location: "Boston, MA, USA"
+
 - title: "From Link Prediction to Forecasting: Addressing Challenges in Batch-based Temporal Graph Learning"
   event: "Contributed Talk at"
   event_name: "TENET@NetSci25"
   event_url: "https://sites.google.com/view/tenet-netsci/home"
   date: 2025-06-02
   tag: contributed
-  address: "Maastricht, Netherlands"
+  address: "Forum 100, 6229 GV Maastricht, Netherlands" # MECC Maastricht (NetSci 2025 venue)
   location: "Maastricht, Netherlands"
   abstract: >-
     Many real-world applications — like recommending products or predicting social network behavior — are modeled as link prediction problems on temporal graphs using TGNNs. Although these models are ideally evaluated by their ability to predict future links within a fixed time window, in practice they are trained using temporal batches (chunks of equally sized link sets). This batching approach can lead to issues such as loss of fine-grained temporal information, artificial ordering of events, and inconsistent task difficulties across batches due to varying time spans, which in turn makes model performance comparisons problematic. To address these challenges, our work quantifies the resulting information loss and leakage and proposes a dynamic link forecasting task based on fixed time windows instead of arbitrary batches, yielding a more realistic and fair evaluation that better reflects real-world scenarios.
@@ -29,7 +40,7 @@
   event_url: "https://shenyanghuang.github.io/rg.html"
   date: 2024-09-19
   tag: invited
-  address: "McGill University, Montréal, Canada"
+  online: true # Zoom talk - video-call icon in the list, no pin on the map
   location: "McGill University, Montréal, Canada"
   recording: "https://youtu.be/-vlnL_1dkWE"
   abstract: >-
@@ -41,7 +52,7 @@
   event_url: "https://www.hw.uni-wuerzburg.de/fsi-mk/medienstudierendentagung-2024-rueckblick/"
   date: 2024-05-31
   tag: contributed
-  address: "Sanderring 2, 97070 Würzburg, Germany"
+  address: "Emil-Fischer-Straße 50, 97074 Würzburg, Germany" # CAIDAS building, Campus Hubland Nord
   location: "Würzburg, Germany"
   abstract_label: "Zusammenfassung"
   abstract: >-
@@ -57,7 +68,7 @@
   event_url: "https://www.caidas.uni-wuerzburg.de/news/single/news/new-building-for-caidas-opened-with-bavarias-minister-of-science/"
   date: 2024-04-19
   tag: contributed
-  address: "Am Hubland, 97074 Würzburg, Germany"
+  address: "Emil-Fischer-Straße 50, 97074 Würzburg, Germany" # CAIDAS building, Campus Hubland Nord
   location: "Würzburg, Germany"
   abstract: >-
     Data comes in many different forms, such as text, images, music, or Excel spreadsheets. Just as a computer opens these data types with different programs, there are various AI models tailored to each type. In this demo, we illustrate how modern AI methods handle different data types by using the science fiction saga "Star Wars" as an example. In particular, we focus on texts and networks.
@@ -65,3 +76,61 @@
     The great success of ChatGPT has shown us all what modern AI methods can achieve when provided with enough text. However, it is now clear that so-called large language models alone cannot solve all problems. For instance, these models tend to hallucinate, and there are significant concerns regarding data protection. In one part of our demo, we explain the so-called "Retrieval Augmented Generation," an approach that can address these issues.
 
     Texts, however, are not the only data to which we can apply AI methods in today's interconnected world: supply chains, the internet, and social networks can be represented as graphs. In another part, we demonstrate how AI can learn from such graphs and outline the areas in which these AI models are deployed.
+
+# --- Posters ---------------------------------------------------------------
+
+- title: "Learning Interaction Strengths in Network Dynamics from a Single Snapshot"
+  event: "Poster at the Computational Life Sciences Statusseminar"
+  date: 2025-09-04
+  tag: poster
+  address: "Gregor-Mendel-Straße 4, 85354 Freising, Germany"
+  location: "Freising, Germany"
+  poster: "downloads/poster_2025-06_netsci_interaction-strengths.pdf"
+
+- title: "Learning Interaction Strengths in Network Dynamics from a Single Snapshot"
+  event: "Poster at"
+  event_name: "NetSci 2025"
+  event_url: "https://netsci2025.github.io/"
+  date: 2025-06-04
+  tag: poster
+  address: "Forum 100, 6229 GV Maastricht, Netherlands" # MECC Maastricht
+  location: "Maastricht, Netherlands"
+  poster: "downloads/poster_2025-06_netsci_interaction-strengths.pdf"
+
+- title: "Cell-Type Prediction in Spatial Transcriptomics Data using Graph Neural Networks"
+  event: "Poster at the Computational Life Sciences Statusseminar"
+  date: 2024-09-09
+  tag: poster
+  address: "Regina-Pacis-Weg 3, 53113 Bonn, Germany" # University of Bonn main building
+  location: "Bonn, Germany"
+  poster: "downloads/poster_2024-05_mlgenx_cell-type-prediction.png"
+
+- title: "Cell-Type Prediction in Spatial Transcriptomics Data using Graph Neural Networks"
+  event: "Poster at the"
+  event_name: "MLGenX Workshop at ICLR 2024"
+  event_url: "https://iclr.cc/virtual/2024/workshop/20572"
+  date: 2024-05-11 # ICLR 2024 workshop day
+  tag: poster
+  address: "Messeplatz 1, 1020 Wien, Austria" # Messe Wien Exhibition Congress Center
+  location: "Vienna, Austria"
+  poster: "downloads/poster_2024-05_mlgenx_cell-type-prediction.png"
+
+- title: "The Self-Loop Paradox: Investigating the Impact of Self-Loops on GNNs"
+  event: "Poster at the"
+  event_name: "LoG 2023 Local Meetup Munich"
+  event_url: "https://www.mdsi.tum.de/mdsi/log2023/"
+  date: 2023-12-01 # poster session of the meetup (Nov 30 - Dec 1, 2023)
+  tag: poster
+  address: "Lichtenbergstraße 2a, 85748 Garching, Germany" # TUM Institute for Advanced Study
+  location: "Munich, Germany"
+  poster: "downloads/poster_2023-11_log_self-loop-paradox.pdf"
+
+- title: "The Self-Loop Paradox: Investigating the Impact of Self-Loops on GNNs"
+  event: "Poster at the"
+  event_name: "Second Learning on Graphs Conference (LoG)"
+  event_url: "https://logconference.org/"
+  date: 2023-11-28
+  tag: poster
+  online: true # virtual conference - video-call icon in the list, no pin on the map
+  location: "Online"
+  poster: "downloads/poster_2023-11_log_self-loop-paradox.pdf"
